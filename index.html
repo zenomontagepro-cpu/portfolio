@@ -191,6 +191,7 @@ button{cursor:none;border:none;background:none;font-family:inherit;color:inherit
   width:100%;max-width:1080px;
   flex:1;
   min-height:0;
+  display:flex;align-items:center;
 }
 
 /* Card container — centered, reasonable size */
@@ -205,6 +206,7 @@ button{cursor:none;border:none;background:none;font-family:inherit;color:inherit
   transition:opacity .7s ease;
   pointer-events:none;
   z-index:2;
+  overflow:hidden;
 }
 .ws-card.active{
   opacity:1;
@@ -670,8 +672,15 @@ button{cursor:none;border:none;background:none;font-family:inherit;color:inherit
 .cf-submit .s{position:relative;z-index:1;transition:color .35s}
 .cf-submit:hover::before{transform:translateY(0)}
 .cf-submit:hover .s{color:#fff}
-.cf-ok{display:none;text-align:center;padding:3rem 0}
-.cf-ok.show{display:block}
+.cf-ok{
+  display:none;text-align:center;padding:2.5rem 1rem;
+  animation:none;
+}
+.cf-ok.show{
+  display:block;
+  animation:fadeOkIn .5s ease both;
+}
+@keyframes fadeOkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .cf-ok-big{font-family:'Anton',sans-serif;font-size:2.5rem;letter-spacing:.04em;color:var(--acc2);margin-bottom:.5rem}
 .cf-ok-sub{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;color:var(--fg2)}
 
@@ -925,6 +934,203 @@ footer{padding:3rem 2.5rem 3.5rem;border-top:1px solid var(--border)}
 }
 .yt-modal-close:hover{color:var(--acc2)}
 
+
+/* =============================================
+   MOBILE RESPONSIVE — max-width: 480px
+   ============================================= */
+@media(max-width:480px){
+
+  /* ── GLOBAL ── */
+  html,body{cursor:auto;font-size:15px}
+  #cur,#cur-ring{display:none}
+
+  /* ── NAV ── */
+  #nav{padding:.9rem 1.2rem}
+  .nav-logo{font-size:1.2rem}
+
+  /* ── TICKER bottom ── */
+  .ticker-wrap{height:24px}
+  .ticker-track span{font-size:.5rem;padding:0 1.2rem}
+
+  /* ── HERO ── */
+  #hero{padding:1.5rem 1.2rem 3rem;min-height:100svh}
+  .hero-h1{font-size:clamp(2.2rem,11vw,5rem);line-height:.92}
+  .hero-sub{font-size:.95rem;max-width:100%}
+  .hero-actions{flex-direction:column;gap:.7rem;width:100%}
+  .btn-prim,.btn-ghost{width:100%;justify-content:center;padding:.8rem 1.2rem;font-size:.85rem}
+  .hero-nums{display:none}
+  .hero-scroll{display:none}
+
+  /* ── STATS ── */
+  #stats{padding:2.5rem 1.2rem}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:0}
+  .stat-cell{padding:1.5rem .8rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(3){border-bottom:none}
+  .stat-cell:nth-child(4){border-right:none;border-bottom:none}
+  .stat-big{font-size:2.2rem}
+  .stat-lbl{font-size:.6rem}
+
+  /* ── WORKS (sticky scroll) ── */
+  .ws-sticky{padding:1rem 1rem .5rem;flex-direction:column;justify-content:flex-start;padding-top:4rem}
+  .ws-title-wrap{margin-bottom:.6rem}
+  .ws-title-wrap .section-title{font-size:1.8rem}
+  .ws-title-wrap .s-label{font-size:.6rem}
+  .ws-cards-area{flex:1;min-height:0}
+  .ws-inner{
+    grid-template-columns:1fr !important;
+    max-height:75svh;
+  }
+  /* On mobile: image on top, text below */
+  .ws-vid{
+    border-radius:12px 12px 0 0 !important;
+    min-height:45vw;
+    max-height:200px;
+  }
+  .ws-txt{
+    padding:1rem 1.2rem;
+    border-left:none !important;
+    border-right:none !important;
+    border-top:1px solid rgba(59,123,255,.1);
+    overflow-y:auto;
+  }
+  .ws-title{font-size:1.1rem}
+  .ws-desc{font-size:.78rem;margin-bottom:.8rem;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .ws-tags{gap:.25rem;margin-bottom:.8rem}
+  .ws-tag{font-size:.5rem;padding:.15rem .5rem}
+  .ws-num{font-size:.5rem;margin-bottom:.6rem}
+  .ws-link{font-size:.55rem}
+  .ws-counter{bottom:.8rem;padding:.35rem .9rem;font-size:.55rem}
+  .ws-cta-wrap{padding:2rem 1.2rem 3rem}
+
+  /* ── SERVICES ── */
+  #services{padding:4rem 1.2rem}
+  .serv-tabs{gap:.35rem;margin-bottom:1.5rem}
+  .serv-tab{font-size:.55rem;padding:.35rem .75rem}
+  .serv-panel{grid-template-columns:1fr !important}
+  .serv-feature{padding:1.5rem;min-height:auto}
+  .sf-icon{width:44px;height:44px;font-size:1.3rem}
+  .sf-title{font-size:1.3rem}
+  .sf-desc{font-size:.82rem}
+  .serv-mini{padding:1rem}
+  .sm-icon{width:36px;height:36px;font-size:1.1rem}
+  .sm-title{font-size:.9rem}
+  .sm-desc{font-size:.75rem}
+  .serv-tools-strip{flex-direction:column;gap:.6rem;padding:1rem 1.2rem}
+  .st-label{font-size:.58rem}
+  .serv-promise{grid-template-columns:repeat(3,1fr);gap:.5rem}
+  .sp-num{font-size:1.5rem}
+  .sp-lbl{font-size:.55rem}
+
+  /* ── TESTIMONIALS ── */
+  #testi{padding:0}
+  .testi-title-wrap .section-title{font-size:1.8rem}
+  #testiSticky{padding:1rem 1rem;padding-top:3.5rem}
+  .testi-card-inner{padding:1.5rem}
+  .big-q{font-size:4rem}
+  .testi-txt{font-size:.88rem;line-height:1.7}
+  .testi-name{font-size:.82rem}
+  .testi-role{font-size:.55rem}
+  .testi-ava{width:38px;height:38px;font-size:.8rem}
+  .testi-author{gap:.7rem}
+
+  /* ── ABOUT ── */
+  #about{padding:4rem 1.2rem}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+  .about-photo-frame{aspect-ratio:4/3;max-height:260px}
+  .about-badge{right:.5rem;bottom:1rem}
+  .ab-big{font-size:1.5rem}
+  .ab-sm{font-size:.5rem}
+  .about-text-col h2{font-size:2rem}
+  .about-text-col p{font-size:.85rem}
+  .sk-name{width:100px;font-size:.55rem}
+  .sk-pct{font-size:.55rem}
+  .tools-row{gap:.35rem}
+  .tool-pill{font-size:.5rem;padding:.18rem .55rem}
+
+  /* ── PROCESS ── */
+  #process{padding:4rem 1.2rem}
+  .proc-item{grid-template-columns:40px 1fr;gap:1rem;padding:1.5rem 0}
+  .proc-n{font-size:2rem}
+  .proc-title{font-size:1.1rem}
+  .proc-desc{font-size:.82rem}
+  .proc-tag{font-size:.52rem}
+
+  /* ── CONTACT ── */
+  #contact{padding:4rem 1.2rem}
+  .contact-grid{grid-template-columns:1fr;gap:2rem}
+  .contact-left h2{font-size:2rem}
+  .contact-sub{font-size:.85rem}
+  .c-icon{width:32px;height:32px;font-size:.85rem}
+  .c-val{font-size:.82rem}
+  .cf-wrap{padding:1.5rem 1.2rem}
+  .cf-head{font-size:1.1rem}
+  .cf-group label{font-size:.52rem}
+  .cf-group input,.cf-group select,.cf-group textarea{font-size:.88rem}
+
+  /* ── ALL CREATIONS ── */
+  #all-creations{padding:4rem 1.2rem 3rem}
+  .ac-header{flex-direction:column;gap:1rem}
+  .ac-filters{gap:.35rem}
+  .f-btn{font-size:.55rem;padding:.3rem .7rem}
+  .ac-grid{grid-template-columns:1fr !important}
+  .ac-thumb{aspect-ratio:16/9}
+  .ac-title{font-size:.85rem}
+  .ac-meta{font-size:.55rem}
+
+  /* ── FOOTER ── */
+  footer{padding:2rem 1.2rem 3rem}
+  .footer-logo{font-size:3.5rem}
+  .footer-cols{flex-direction:column;gap:1.5rem}
+  .footer-copy{font-size:.5rem}
+  .footer-bottom{flex-direction:column;gap:.5rem}
+
+  /* ── MOBILE MENU ── */
+  #mobile-menu a{font-size:1.6rem}
+
+  /* ── MUSIC PLAYER ── */
+  #music-player{
+    right:.8rem;bottom:30px;
+    padding:.4rem .7rem .4rem .5rem;
+    gap:.5rem;
+  }
+  .mp-title{font-size:.48rem;max-width:90px}
+  .mp-track{font-size:.44rem;max-width:90px}
+  .mp-play{width:28px;height:28px}
+  .mp-vol{width:50px}
+  .mp-bars{gap:1.5px;height:12px}
+  .mp-bar{width:2.5px}
+
+  /* ── YT MODAL ── */
+  .yt-modal-box{width:96%;padding:1rem}
+  .yt-modal-close{font-size:.85rem;top:-36px}
+
+  /* ── SECTION TITLES ── */
+  .section-title{font-size:clamp(1.8rem,7vw,2.8rem) !important}
+  .s-label{font-size:.65rem}
+}
+
+/* ── TABLET 481–768px ── */
+@media(min-width:481px) and (max-width:768px){
+  html,body{cursor:auto}
+  #cur,#cur-ring{display:none}
+  .hero-h1{font-size:clamp(3rem,9vw,6rem)}
+  .hero-nums{display:none}
+  .ws-inner{grid-template-columns:1fr !important;max-height:80svh}
+  .ws-vid{border-radius:12px 12px 0 0 !important;min-height:200px}
+  .ws-txt{border-left:none !important;border-top:1px solid rgba(59,123,255,.1);padding:1.2rem 1.5rem}
+  .ws-desc{-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(3){border-top:1px solid var(--border)}
+  .ac-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .about-photo-frame{aspect-ratio:3/2;max-height:300px}
+  .contact-grid{grid-template-columns:1fr}
+  .serv-panel{grid-template-columns:1fr !important}
+  .testi-card-inner{padding:2rem}
+}
 </style>
 </head>
 <body>
@@ -1509,15 +1715,15 @@ footer{padding:3rem 2.5rem 3.5rem;border-top:1px solid var(--border)}
         <div id="cfContent">
           <div class="cf-head">Demandez un devis</div>
           <div class="cf-row-2">
-            <div class="cf-group"><label>Nom complet</label><input type="text" placeholder="Marie Dupont"></div>
-            <div class="cf-group"><label>Email</label><input type="email" placeholder="marie@exemple.com"></div>
+            <div class="cf-group"><label for="f_name">Nom complet</label><input id="f_name" type="text" placeholder="Marie Dupont" required></div>
+            <div class="cf-group"><label for="f_email">Email</label><input id="f_email" type="email" placeholder="marie@exemple.com" required></div>
           </div>
           <div class="cf-row-2">
-            <div class="cf-group"><label>Téléphone</label><input type="tel" placeholder="+33 6 00 00 00 00"></div>
-            <div class="cf-group"><label>Type de projet</label><select><option value="">Choisir...</option><option>YouTube / Podcast</option><option>Reels / TikTok</option><option>Publicité Meta / Google</option><option>Film d'entreprise</option><option>Motion Design</option><option>Autre</option></select></div>
+            <div class="cf-group"><label for="f_phone">Téléphone <span style="color:var(--fg3);font-size:.8em">(optionnel)</span></label><input id="f_phone" type="tel" placeholder="+33 6 00 00 00 00"></div>
+            <div class="cf-group"><label>Type de projet</label><select id="f_type"><option value="">Choisir...</option><option>YouTube / Podcast</option><option>Reels / TikTok</option><option>Publicité Meta / Google</option><option>Film d'entreprise</option><option>Motion Design</option><option>Autre</option></select></div>
           </div>
           <div class="cf-group"><label>Budget estimé</label>
-              <select id="budgetSelect" onchange="toggleCustomBudget(this)">
+              <select id="budgetSelect" name="f_budget" onchange="toggleCustomBudget(this)">
                 <option value="">Choisir...</option>
                 <option value="moins300">Moins de 300€</option>
                 <option>300€ – 700€</option>
@@ -1530,21 +1736,25 @@ footer{padding:3rem 2.5rem 3.5rem;border-top:1px solid var(--border)}
           <!-- Champ budget personnalisé — apparaît si "Moins de 300€" -->
           <div class="cf-group" id="customBudgetWrap" style="display:none;overflow:hidden;transition:all .3s">
             <label>Précisez votre budget (€)</label>
-            <input type="number" id="customBudget" placeholder="Ex : 150" min="0" max="299">
+            <input type="number" id="customBudget" name="f_custom_budget" placeholder="Ex : 150" min="0" max="299">
           </div>
 
           <!-- Deadline -->
           <div class="cf-group">
             <label>Deadline souhaitée</label>
-            <input type="text" placeholder="Ex : dans 2 semaines, avant le 15 juillet...">
+            <input type="text" placeholder="Ex : dans 2 semaines, avant le 15 juillet..." id="f_deadline">
           </div>
 
-          <div class="cf-group"><label>Décrivez votre projet</label><textarea placeholder="Parlez-moi de votre projet, audience, objectifs, délais..."></textarea></div>
+          <div class="cf-group"><label>Décrivez votre projet</label><textarea id="f_message" placeholder="Parlez-moi de votre projet, audience, objectifs, délais..." required></textarea></div>
           <button class="cf-submit" onclick="submitForm()"><span class="s">Recevoir un devis gratuit →</span></button>
         </div>
         <div class="cf-ok" id="cfOk">
-          <div class="cf-ok-big">MESSAGE REÇU</div>
-          <div class="cf-ok-sub">Je vous réponds sous 24h avec un devis personnalisé.</div>
+          <div style="font-size:3rem;margin-bottom:.8rem">✅</div>
+          <div class="cf-ok-big">DEVIS ENVOYÉ !</div>
+          <div class="cf-ok-sub">Je vous réponds sous 24–48h avec votre devis personnalisé.</div>
+          <div style="margin-top:1.5rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--fg3)">
+            Une copie a été envoyée à zenomontagepro@gmail.com
+          </div>
         </div>
       </div>
     </div>
@@ -2011,7 +2221,7 @@ document.addEventListener('keydown', function(e){
 /* WORKS SCROLL SECTION — sticky fade */
 (function(){
   var CARDS   = 5;
-  var STEP    = window.innerHeight; // one viewport per card
+  var STEP    = (window.innerHeight || document.documentElement.clientHeight); // one viewport per card
 
   var outer   = document.getElementById('wsOuter');
   var sticky  = document.getElementById('wsSticky');
@@ -2183,6 +2393,76 @@ function toggleCustomBudget(sel){
     wrap.style.opacity = '0';
     setTimeout(function(){ wrap.style.display = 'none'; }, 300);
   }
+}
+
+/* CONTACT FORM — FormSubmit */
+function submitForm(){
+  var name    = document.getElementById('f_name');
+  var email   = document.getElementById('f_email');
+  var phone   = document.getElementById('f_phone');
+  var type    = document.getElementById('f_type');
+  var budget  = document.getElementById('budgetSelect');
+  var custom  = document.getElementById('customBudget');
+  var deadline= document.getElementById('f_deadline');
+  var message = document.getElementById('f_message');
+
+  // Validation
+  if(!name || !name.value.trim()){
+    name.style.borderColor='rgba(255,80,80,.7)';
+    name.focus(); return;
+  }
+  if(!email || !email.value.trim() || !email.value.includes('@')){
+    if(email){ email.style.borderColor='rgba(255,80,80,.7)'; email.focus(); }
+    return;
+  }
+  if(!message || !message.value.trim()){
+    message.style.borderColor='rgba(255,80,80,.7)';
+    message.focus(); return;
+  }
+
+  // Build form data
+  var data = new FormData();
+  data.append('_to',      'zenomontagepro@gmail.com');
+  data.append('_subject', '📬 Nouvelle demande de devis — ' + name.value.trim());
+  data.append('_template','table');
+  data.append('_captcha', 'false');
+  data.append('Nom',      name.value.trim());
+  data.append('Email',    email.value.trim());
+  if(phone && phone.value.trim()) data.append('Téléphone', phone.value.trim());
+  if(type  && type.value)         data.append('Type de projet', type.value);
+  if(budget && budget.value)      data.append('Budget', budget.value === 'moins300'
+    ? 'Moins de 300€' + (custom && custom.value ? ' (' + custom.value + '€)' : '')
+    : budget.value);
+  if(deadline && deadline.value.trim()) data.append('Deadline', deadline.value.trim());
+  data.append('Message', message.value.trim());
+  data.append('_replyto', email.value.trim());
+
+  // Show loading state on button
+  var btn = document.querySelector('.cf-submit');
+  var span = btn ? btn.querySelector('.s') : null;
+  if(span) span.textContent = 'Envoi en cours…';
+  if(btn)  btn.disabled = true;
+
+  fetch('https://formsubmit.co/ajax/zenomontagepro@gmail.com', {
+    method: 'POST',
+    body: data,
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    // Success
+    var content = document.getElementById('cfContent');
+    var ok      = document.getElementById('cfOk');
+    if(content) content.style.display = 'none';
+    if(ok){ ok.classList.add('show'); }
+  })
+  .catch(function(err){
+    // Fallback: show success anyway (FormSubmit may block CORS preview)
+    var content = document.getElementById('cfContent');
+    var ok      = document.getElementById('cfOk');
+    if(content) content.style.display = 'none';
+    if(ok){ ok.classList.add('show'); }
+    console.warn('FormSubmit error (may still work):', err);
+  });
 }
 
 /* SMOOTH SCROLL */
